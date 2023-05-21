@@ -19,7 +19,7 @@ template_func() {
 
 # Function for ssh option
 ssh_func() {
-    
+    echo "ssh func"
 }
 
 # Function for docId option
