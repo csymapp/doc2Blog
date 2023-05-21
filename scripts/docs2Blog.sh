@@ -3,15 +3,17 @@
 # Use google docs and sheets to update a jekyll website and blog hosted on github pages
 #
 # Function for template option
-template_func() {
-    folder_path="/content/drive/MyDrive/Publishing/Website"
 
-    if [ ! -d "$folder_path" ]; then
+folder_path="/content/drive/MyDrive/Publishing"
+template_func() {
+    template_folder_path="$folder_path/Website"
+
+    if [ ! -d "$template_folder_path" ]; then
         cd /tmp
         rm -rf ./docs2Blog
         git clone https://github.com/csymapp/docs2Blog.git 
-        mkdir -p "/content/drive/MyDrive/Publishing/"
-        rsync -av ./docs2Blog/Publishing/ "/content/drive/MyDrive/Publishing/"
+        mkdir -p "$folder_path"
+        rsync -av ./docs2Blog/Publishing/ "$folder_path"
     # else
     #     echo "The folder exists."
     fi
@@ -19,7 +21,22 @@ template_func() {
 
 # Function for ssh option
 ssh_func() {
-    echo "ssh func"
+    ssh_folder_path="$folder_path/Website-private"
+
+    if [ ! -f "$folder_path/Website-private/id_rsa" ]; then
+        sudo apt install xclip
+        read -p "Enter your email address: " email
+
+        # Define paths for the keys
+        private_key_path="$ssh_folder_path/id_rsa"
+        public_key_path="$ssh_folder_path/id_rsa.pub"
+        ssh-keygen -t rsa -b 4096 -C "$email" -f "$private_key_path" -N ""
+        public_key=$(cat "$public_key_path")
+        echo "Public key has been generated. It is copied to the clipboard."
+        echo "$public_key" | xclip -selection clipboard
+    # else
+    #     echo "id_rsa exists."
+    fi
 }
 
 # Function for docId option
