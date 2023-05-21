@@ -43,6 +43,23 @@ ssh_func() {
     # else
     #     echo "id_rsa exists."
     fi
+
+    # ssh-keyscan GitHub.com >> /root/.ssh/known_hosts 2>&1 >/dev/null
+    ## either ~ or /root is the correct directory. Use both just in case
+    mkdir -p ~/.ssh
+    mkdir -p /root/.ssh/
+    mkdir -p /tmp/ssh
+    rm -rf /tmp/ssh
+    mkdir -p /tmp/ssh
+    cp "$ssh_folder_path/id_rsa" /tmp/ssh/
+    rsync -aq /tmp/ssh/  ~/.ssh/id_rsa
+    rsync -aq /tmp/ssh/   /root/.ssh/id_rsa
+    ssh-keyscan GitHub.com > /root/.ssh/known_hosts #2>&1 >/dev/null
+    ssh-keyscan GitHub.com > ~/.ssh/known_hosts #2>&1 >/dev/null
+    chmod 644 ~/.ssh/known_hosts
+    chmod 600 ~/.ssh/id_rsa
+    chmod 644 /root/.ssh/known_hosts
+    chmod 600 /root/.ssh/id_rsa
 }
 
 # Function for docId option
