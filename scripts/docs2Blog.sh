@@ -63,8 +63,8 @@ ssh_func() {
 }
 
 # Function for docId option
-docId_func() {
-    echo "Running docId function with argument: $1"
+site_func() {
+    ./siteProcessor.sh
     # Add your code for the docId function here
 }
 
@@ -87,12 +87,8 @@ case $1 in
     "ssh")
         ssh_func "$2"
         ;;
-    "docId")
-        if [[ $# -lt 2 ]]; then
-            echo "Please provide an argument for docId option"
-            exit 1
-        fi
-        docId_func "$2"
+    "site")
+        site_func
         ;;
     "all")
         all_func
