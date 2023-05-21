@@ -36,8 +36,8 @@ ssh_func() {
 
         # Define paths for the keys
         private_key_path="$ssh_folder_path/id_rsa"
-        public_key_path="$ssh_folder_path/id_rsa.pub"
-        ssh-keygen -t rsa -b 4096 -C "$email" -f "$private_key_path" -N ""
+        public_key_path="$ssh_folder_path/id_rsa.pub" > /dev/null 2>$1
+        ssh-keygen -t rsa -b 4096 -C "$email" -f "$private_key_path" -N "" > /dev/null
         touch /tmp/new_rsa
         # public_key=$(cat "$public_key_path")
         # echo "Public key has been generated. It is copied to the clipboard."
