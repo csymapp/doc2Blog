@@ -31,14 +31,14 @@ ssh_func() {
     if [ ! -f "$folder_path/Website-private/id_rsa" ]; then
         # sudo apt install xclip
         # read -p "Enter your email address: " email
-        random_string=$(generate_random_string 8)
-        domain="example.com"
-        email="${random_string}@${domain}"
+        email="$1"
+        echo "using email $email"
 
         # Define paths for the keys
         private_key_path="$ssh_folder_path/id_rsa"
         public_key_path="$ssh_folder_path/id_rsa.pub"
         ssh-keygen -t rsa -b 4096 -C "$email" -f "$private_key_path" -N ""
+        touch /tmp/new_rsa
         # public_key=$(cat "$public_key_path")
         # echo "Public key has been generated. It is copied to the clipboard."
         # echo "$public_key" | xclip -selection clipboard
@@ -70,7 +70,7 @@ case $1 in
         template_func
         ;;
     "ssh")
-        ssh_func
+        ssh_func "$2"
         ;;
     "docId")
         if [[ $# -lt 2 ]]; then
