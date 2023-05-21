@@ -4,14 +4,22 @@
 #
 # Function for template option
 template_func() {
-    echo "Running template function"
-    # Add your code for the template function here
+    folder_path="/content/drive/MyDrive/Publishing/Website"
+
+    if [ ! -d "$folder_path" ]; then
+        cd /tmp
+        rm -rf docs2Blog
+        git clone https://github.com/csymapp/docs2Blog.git 
+        mkdir -p "/content/drive/MyDrive/Publishing/"
+        rsync -av ./docs2Blog/Publishing/ "/content/drive/MyDrive/Publishing/"
+    # else
+    #     echo "The folder exists."
+    fi
 }
 
 # Function for ssh option
 ssh_func() {
-    echo "Running SSH function"
-    # Add your code for the SSH function here
+    
 }
 
 # Function for docId option
