@@ -3,7 +3,7 @@
 # Use google docs and sheets to update a jekyll website and blog hosted on github pages
 #
 # Function for template option
-
+sudo apt install pandoc > /dev/null
 folder_path="/content/drive/MyDrive/Publishing"
 template_func() {
     template_folder_path="$folder_path/Website"
