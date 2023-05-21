@@ -19,13 +19,21 @@ template_func() {
     fi
 }
 
+# Random string generation function
+generate_random_string() {
+  cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w "${1:-10}" | head -n 1
+}
+
 # Function for ssh option
 ssh_func() {
     ssh_folder_path="$folder_path/Website-private"
 
     if [ ! -f "$folder_path/Website-private/id_rsa" ]; then
-        sudo apt install xclip
-        read -p "Enter your email address: " email
+        # sudo apt install xclip
+        # read -p "Enter your email address: " email
+        random_string=$(generate_random_string 8)
+        domain="example.com"
+        email="${random_string}@${domain}"
 
         # Define paths for the keys
         private_key_path="$ssh_folder_path/id_rsa"
