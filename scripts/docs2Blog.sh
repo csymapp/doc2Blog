@@ -39,9 +39,9 @@ ssh_func() {
         private_key_path="$ssh_folder_path/id_rsa"
         public_key_path="$ssh_folder_path/id_rsa.pub"
         ssh-keygen -t rsa -b 4096 -C "$email" -f "$private_key_path" -N ""
-        public_key=$(cat "$public_key_path")
-        echo "Public key has been generated. It is copied to the clipboard."
-        echo "$public_key" | xclip -selection clipboard
+        # public_key=$(cat "$public_key_path")
+        # echo "Public key has been generated. It is copied to the clipboard."
+        # echo "$public_key" | xclip -selection clipboard
     # else
     #     echo "id_rsa exists."
     fi
