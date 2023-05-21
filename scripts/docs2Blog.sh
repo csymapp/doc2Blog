@@ -32,11 +32,9 @@ ssh_func() {
         # sudo apt install xclip
         # read -p "Enter your email address: " email
         email="$1"
-        echo "using email $email"
-
         # Define paths for the keys
         private_key_path="$ssh_folder_path/id_rsa"
-        public_key_path="$ssh_folder_path/id_rsa.pub" > /dev/null 2>$1
+        public_key_path="$ssh_folder_path/id_rsa.pub" > /dev/null
         ssh-keygen -t rsa -b 4096 -C "$email" -f "$private_key_path" -N "" > /dev/null
         touch /tmp/new_rsa
         # public_key=$(cat "$public_key_path")
