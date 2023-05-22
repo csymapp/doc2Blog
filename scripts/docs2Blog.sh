@@ -65,6 +65,7 @@ ssh_func() {
 ssh_setup() {
     # ssh-keyscan GitHub.com >> /root/.ssh/known_hosts 2>&1 >/dev/null
     ## either ~ or /root is the correct directory. Use both just in case
+    ssh_folder_path="$folder_path/Website-private"
     mkdir -p ~/.ssh
     mkdir -p /root/.ssh/
     mkdir -p /tmp/ssh
