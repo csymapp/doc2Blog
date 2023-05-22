@@ -29,7 +29,6 @@ rm logs1
 prelink=$(cat sheet.csv |grep -o 'Github,[^ ]*' | cut -d',' -f2 | tr -d '\r')
 link="git@github.com:$prelink.git"
 echo "==>$link "
-exit
 
 GitCommitUser=$(grep -rh "GitCommitUser," sheet.csv | sed 's/GitCommitUser,//' | tr -d '\r'| sed 's/,//g')
 GitCommitEmail=$(grep -rh "GitCommitEmail," sheet.csv | sed 's/GitCommitEmail,//'| tr -d '\r'| sed 's/,//g')
