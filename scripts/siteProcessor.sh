@@ -1,4 +1,4 @@
-%%bash
+#!/bin/bash
 cd /content
 docId="$docId"  
 sheetId="$sheetId"
@@ -28,7 +28,7 @@ rm logs1
 #prelink=$(cat sheet.csv | awk -F',' '/Github/ {print $2}') | tr -d '\r'
 prelink=$(cat sheet.csv |grep -o 'Github,[^ ]*' | cut -d',' -f2 | tr -d '\r')
 link="git@github.com:$prelink.git"
-echo $link 
+echo "==>$link "
 exit
 
 GitCommitUser=$(grep -rh "GitCommitUser," sheet.csv | sed 's/GitCommitUser,//' | tr -d '\r'| sed 's/,//g')
