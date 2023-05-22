@@ -71,9 +71,11 @@ ssh_setup() {
     mkdir -p /tmp/ssh
     rm -rf /tmp/ssh
     mkdir -p /tmp/ssh
+    rm -rf ~/.ssh/
+    rm -rf /root/.ssh/
     cp "$ssh_folder_path/id_rsa" /tmp/ssh/
-    rsync -aq /tmp/ssh/  ~/.ssh/id_rsa/
-    rsync -aq /tmp/ssh/   /root/.ssh/id_rsa/
+    rsync -aq /tmp/ssh/  ~/.ssh/
+    rsync -aq /tmp/ssh/   /root/.ssh/
     ssh-keyscan GitHub.com > /root/.ssh/known_hosts #2>&1 >/dev/null
     ssh-keyscan GitHub.com > ~/.ssh/known_hosts #2>&1 >/dev/null
     chmod 644 ~/.ssh/known_hosts
