@@ -20,6 +20,7 @@ jobs:
           git branch -a  # Optional: Display branches for debugging purposes
           git checkout gh-pages || git checkout --orphan gh-pages
           cp -r docs/* ./
+          touch .nojekyll
           git add .
           git commit -m 'Update gh-pages'
           git push origin gh-pages -f
